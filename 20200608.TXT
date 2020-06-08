@@ -1,0 +1,68 @@
+AKIAQYU2ROSKZIXZ6X4F
+
+
+
+
+MM0oVDZGt+4eeSGVVBtejJ5YUr4brD53Wjf/fiHU
+
+
+us-east-2
+
+>>AWS클러스터 생성
+eksctl create cluster --name admin04-sk-Cluster --version 1.15 --nodegroup-name standard-workers --node-type t3.medium --nodes 3 --nodes-min 1 --nodes-max 3
+
+eksctl create cluster --name admin04-cluster2 --version 1.15 --nodegroup-name standard-workers --node-type t3.small --nodes 3 --nodes-min 1 --nodes-max 3
+
+eksctl create cluster --name admin04-cicd-cluster --version 1.15 --nodegroup-name standard-workers --node-type t3.small --nodes 3 --nodes-min 1 --nodes-max 3
+
+출처: <https://workflowy.com/s/msa/27a0ioMCzlpV04Ib#/62a296734f02> 
+
+
+
+
+
+
+aws eks --region us-east-2 update-kubeconfig --name admin04-sk-Cluster
+
+
+
+
+052937454741.dkr.ecr.us-east-2.amazonaws.com/admin04-cm-sandbox:v1
+
+>> 세션 만료 로그인
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 052937454741.dkr.ecr.us-east-2.amazonaws.com/
+
+docker build -t 052937454741.dkr.ecr.us-east-2.amazonaws.com/admin04-cm-sandbox:v1 .
+docker build -t 052937454741.dkr.ecr.us-east-2.amazonaws.com/admin04-nginx-blue:latest  .
+docker build -t 052937454741.dkr.ecr.us-east-2.amazonaws.com/admin04-nginx-green:latest  .
+
+
+
+aws ecr create-repository --repository-name admin04-nginx-blue --region us-east-2
+aws ecr create-repository --repository-name admin04-nginx-green --region us-east-2
+
+
+
+(X)aws ecr create-repository --repository-name admin04-cm-sandbox --region us-east-2
+
+
+docker push 052937454741.dkr.ecr.us-east-2.amazonaws.com/admin04-cm-sandbox:v1
+
+052937454741.dkr.ecr.us-east-2.amazonaws.com
+
+Ping proxy-us-e-proxylb-rgy86izpd19c-38118563.us-east-2.elb.amazonaws.com [3.133.189.142] 
+
+http://msaez.io/
+https://workflowy.com/s/msa/27a0ioMCzlpV04Ib#/62a296734f02
+
+eksctl create cluster --name admin04-cicd-cluster --version 1.15 --nodegroup-name standard-workers --node-type t3.small --nodes 3 --nodes-min 1 --nodes-max 3
+
+
+https://17300B59E3AD54BBC5BA0D825CF5078C.yl4.us-east-2.eks.amazonaws.com
+
+
+eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJla3MtYWRtaW4tdG9rZW4tczdqdzkiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZWtzLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiMDYyZGQxNjMtN2ZkMy00ODQ3LWE2OGEtNTQ4MjljYWY4ZTM1Iiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmVrcy1hZG1pbiJ9.oDEpJcFqeiGs94Zt7qSrGuqV-EHRP4rjoI3Emlz4fEqTPeSPAWfYi0SPgkVM7iJ4KYpB97pFEdTbQwOeq6zgScOTg91ZJXNCf77ilhwiDQ6UFt-wbAowmgI6OShHYmJ3PKUdLDHdRAqxVjSGjQAVjWiyfqldz78qgyq_m5cMpjecaXbrf90Cqs75dXTO3B1qO3htd14xvhpcWubbRNOLNzZXj3aEdU03-RewdgupMgIzJF5SGVqbPrH2uaBWsawmpl35zlXRiPQVD6NqaydRS6X_LNT5QBp-LvztFiloT4j4AcUSxawydERdOFtfC39M9p_hjmqI0xRWNE6MGEH3Bw
+
+
+
+
